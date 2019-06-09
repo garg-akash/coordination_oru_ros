@@ -169,6 +169,7 @@ public class MainNode extends AbstractNodeMain {
 					subscriberGoal.addMessageListener(new MessageListener<geometry_msgs.PoseStamped>() {
 						@Override
 						public void onNewMessage(geometry_msgs.PoseStamped message) {
+							//AKASH option 1
 							Quaternion quat = new Quaternion(message.getPose().getOrientation().getX(), message.getPose().getOrientation().getY(), message.getPose().getOrientation().getZ(), message.getPose().getOrientation().getW());
 							Pose pose = new Pose(message.getPose().getPosition().getX(), message.getPose().getPosition().getY(), quat.getTheta());
 							Mission m = new Mission(robotID,"currentPose", pose.toString(), null, pose);
