@@ -335,7 +335,7 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 			
 			computing = true;
 			
-			//Intead of calling computeTask below (the original ROS service that calls the lattice-based motion planner),
+			//Instead of calling computeTask below (the original ROS service that calls the lattice-based motion planner),
 			//you could directly "ask your roadmap", that is, call your service getBestPath(this.goal[0], robotID, other paths...)
 			//To get the other paths, do as above in AKASH Option 2.
 			
@@ -344,7 +344,7 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 			//call spatial adjustment service with current robot for a and computed vector for b
 			//this.callComputeTaskService(this.goal[0], robotID);
 			//change1
-			int numRobot = 2;
+			int numRobot = 3;
 			//this.callGetTaskFromDBService(this.goal[0], robotID); //where should it be placed?
 			
 			final ArrayList<Task> taskBP = new ArrayList<Task>();
@@ -379,6 +379,7 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 				public void onSuccess(GetBestPathResponse resBP) {
 					System.out.println("Successfully called Get Best Path service for Robot" + robotID);
 					tec.setCurrentTask(resBP.getC().getTarget().getRobotId(), resBP.getC());
+					
 					System.out.println("Seting break deadlock to false when called robot" + robotID);
 					tec.setBreakDeadlocksByReordering(false);
 					tec.setBreakDeadlocksByReplanning(false);
