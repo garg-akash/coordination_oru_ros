@@ -14,6 +14,8 @@ import org.ros.exception.ServiceNotFoundException;
 import org.ros.node.ConnectedNode;
 import org.ros.node.service.ServiceClient;
 import org.ros.node.service.ServiceResponseListener;
+import org.ros.node.parameter.ParameterTree;
+//import org.ros.message.Time;
 
 import com.vividsolutions.jts.geom.Coordinate;
 import com.vividsolutions.jts.geom.Geometry;
@@ -379,6 +381,19 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 				public void onSuccess(GetBestPathResponse resBP) {
 					System.out.println("Successfully called Get Best Path service for Robot" + robotID);
 					tec.setCurrentTask(resBP.getC().getTarget().getRobotId(), resBP.getC());
+					ParameterTree params = node.getParameterTree();
+					if(robotID == 1) {
+						params.set("/bp_robot1", 1); //parameters to process time to goal of robot1 if it finds a path 
+						params.set("/bp_robot1_begin", node.getCurrentTime().toSeconds());
+					}
+					if(robotID == 2) {
+						params.set("/bp_robot2", 1); //parameters to process time to goal of robot2 if it finds a path 
+						params.set("/bp_robot2_begin", node.getCurrentTime().toSeconds());
+					}
+					if(robotID == 3) {
+						params.set("/bp_robot3", 1); //parameters to process time to goal of robot3 if it finds a path 
+						params.set("/bp_robot3_begin", node.getCurrentTime().toSeconds());
+					}
 					System.out.println("Seting break deadlock to false when called robot" + robotID);
 					tec.setBreakDeadlocksByReordering(false);
 					tec.setBreakDeadlocksByReplanning(false);
