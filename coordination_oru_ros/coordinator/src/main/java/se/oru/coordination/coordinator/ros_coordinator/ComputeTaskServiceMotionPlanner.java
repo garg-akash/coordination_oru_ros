@@ -379,7 +379,6 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 				public void onSuccess(GetBestPathResponse resBP) {
 					System.out.println("Successfully called Get Best Path service for Robot" + robotID);
 					tec.setCurrentTask(resBP.getC().getTarget().getRobotId(), resBP.getC());
-					
 					System.out.println("Seting break deadlock to false when called robot" + robotID);
 					tec.setBreakDeadlocksByReordering(false);
 					tec.setBreakDeadlocksByReplanning(false);

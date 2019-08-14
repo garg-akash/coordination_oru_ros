@@ -361,7 +361,6 @@
     </node>
     
   </group>
-
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find cititruck_description)/launch/cititrucks3.rviz"/>
 
 </launch>
