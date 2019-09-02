@@ -346,7 +346,7 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 			//call spatial adjustment service with current robot for a and computed vector for b
 			//this.callComputeTaskService(this.goal[0], robotID);
 			//change1
-			int numRobot = 3;
+			int numRobot = 2;
 			//this.callGetTaskFromDBService(this.goal[0], robotID); //where should it be placed?
 			
 			final ArrayList<Task> taskBP = new ArrayList<Task>();
@@ -390,10 +390,7 @@ public class ComputeTaskServiceMotionPlanner extends AbstractMotionPlanner {
 						params.set("/bp_robot2", 1); //parameters to process time to goal of robot2 if it finds a path 
 						params.set("/bp_robot2_begin", node.getCurrentTime().toSeconds());
 					}
-					if(robotID == 3) {
-						params.set("/bp_robot3", 1); //parameters to process time to goal of robot3 if it finds a path 
-						params.set("/bp_robot3_begin", node.getCurrentTime().toSeconds());
-					}
+
 					System.out.println("Seting break deadlock to false when called robot" + robotID);
 					tec.setBreakDeadlocksByReordering(false);
 					tec.setBreakDeadlocksByReplanning(false);
