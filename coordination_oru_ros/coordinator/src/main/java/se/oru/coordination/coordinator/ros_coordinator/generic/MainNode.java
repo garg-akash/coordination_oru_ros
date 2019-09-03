@@ -28,7 +28,8 @@ import se.oru.coordination.coordination_oru.RobotReport;
 import se.oru.coordination.coordination_oru.motionplanning.AbstractMotionPlanner;
 import se.oru.coordination.coordination_oru.util.Missions;
 import se.oru.coordination.coordination_oru.util.RVizVisualization;
-import se.oru.coordination.coordinator.ros_coordinator.ComputeTaskServiceMotionPlanner;
+//import se.oru.coordination.coordinator.ros_coordinator.ComputeTaskServiceMotionPlanner;
+import se.oru.coordination.coordinator.ros_coordinator.BestPathServiceMotionPlanner;
 import se.oru.coordination.coordinator.ros_coordinator.TrajectoryEnvelopeCoordinatorROS;
 
 public class MainNode extends AbstractNodeMain {
@@ -133,7 +134,8 @@ public class MainNode extends AbstractNodeMain {
 				
 				for (final int robotID : robotIDs) {
 					
-					ComputeTaskServiceMotionPlanner mp = new ComputeTaskServiceMotionPlanner(robotID, node, tec);
+					//ComputeTaskServiceMotionPlanner mp = new ComputeTaskServiceMotionPlanner(robotID, node, tec);
+					BestPathServiceMotionPlanner mp = new BestPathServiceMotionPlanner(robotID, node, tec);
 					mp.setFootprint(footprintCoords);
 					tec.setMotionPlanner(robotID, mp);
 					isPlanning.put(robotID, false);
